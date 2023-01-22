@@ -103,6 +103,11 @@ input[type=color] {
   border-radius: 0 !important;
 }
 
+/* Main UI tab, most of the UI is inside a tab */
+.tabitem {
+  border: 0;
+}
+
 /* Tab buttons */
 #tabs > div:first-of-type button {
   font-family: var(--font_family);
@@ -140,6 +145,11 @@ input[type=color] {
 .dark .\!text-gray-700,
 .dark .\!text-gray-800 {
   color: var(--theme_color_text_main);
+}
+
+/* Image gallery area during image generation with live preview */
+.dark .livePreview {
+  background-color: transparent;
 }
 
 /* Input Colors */
