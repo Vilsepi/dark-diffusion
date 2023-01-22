@@ -539,8 +539,14 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   background: var(--slider_grabbed_knob_background_color);
 }
 
+/* Hide extra horizontal ruler between the footer and the save/send buttons */
+#txt2img_results > div.flex > div.svelte-10ogue4 > div.flex {
+  border: 0 !important;
+}
+
 /* Footer */
 #footer {
+  padding-top: 50px;
   color: var(--theme_color_text_low_importance);
 }
 
