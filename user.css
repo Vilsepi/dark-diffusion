@@ -553,7 +553,9 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 
 /* Text description of generated photos, basically recap of the parameters you just used */
 #html_info_txt2img,
-#html_info_x_extras {
+#html_info_x_extras,
+#html_info_img2img,
+#html_log_img2img {
   color: var(--theme_color_text_low_importance);
 }
 
