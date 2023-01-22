@@ -1,27 +1,58 @@
 
-:root, * , quickcss_target{
-    --App_color: #cf43de;
+:root, * , quickcss_target {
 
-    --Primary_color: #eee; /* BRIGHT, Action button, selected radio button, slider handle */
-    --Secondary_color: #2e2e32; /* DARKISH, hovered input field background , number field border, secondary button border and hover, */
-    --Input_text_color: #eee; /* BRIGHT, text and numbers in input fields, dropdown selected text */
-    --Input_text_color_focus: #eee; /* BRIGHT (inverse of secondary color), text when hovered, dropdown item text*/
+  /* Color palette --------------------------------------------------------- */
 
-    --Background_color: #1d1e20;
-    --Checked_text: #eee;
+  --theme_color_green: #73C991; /* e.g. OK */
+  --theme_color_red: #DB6A5E; /* e.g. error/warning */
+  --theme_color_blue: #3B8EEA; /* e.g. notice, accent */
 
-    --Bar_background_color: var(--App_color);
+  --theme_color_text_highlight: #EEEEEE;
+  --theme_color_text_main: #CCCCCC; /* main text */
+  --theme_color_text_main_greyed_out: #8C8C8C; /* e.g. disabled, passive, unavailable */
+  --theme_color_text_low_importance: #666666; /* e.g. footer */
 
-    /* Progress bar shown when generating images */
-    --Progress_bar_color: var(--App_color);
-    --Progress_bar_text_color: #fff;
+  --theme_color_border_main: #474747;
+  /*--theme_color_border_light: #585858;*/
+  --theme_color_border_low_visibility: #414141; /* use against darkest #1E1E1E background*/
 
-    --Font_Family: "Segoe UI", Arial, sans-serif;
+  --theme_color_background_main: #1E1E1E;
+  --theme_color_background_panel: #252526;
+  --theme_color_background_bar: #3C3C3C;
 
-    --UI_radius: 0; /* border radius */
-    --favicon: url('file=favicon.svg');
-    --left_panel_width: 40;
-    --left-column: calc(20px *var(--left_panel_width));
+  /* ----------------------------------------------------------------------- */
+
+  --background_color: var(--theme_color_background_main);
+
+  --input_text_color: var(--theme_color_text_main); /* text and numbers in input fields, dropdown selected text */
+  --input_focus_color: var(--theme_color_text_highlight); /* text when hovered, dropdown item text*/
+  --input_focus_background_color: var(--theme_color_background_panel); /* background color when hovering input fields and dropdown menus */
+
+  /* Number input field, the ones accompanying sliders with the up/down arrow buttons */
+  --input_number_border_color: var(--theme_color_border_main);
+  --input_number_border_hover_color: var(--theme_color_blue);
+
+  /* Secondary buttons */
+  --button_border_color: var(--theme_color_border_main);
+  --button_background_color: var(--theme_color_background_panel);
+  --button_text_color: var(--theme_color_text_main_greyed_out);
+
+  /* Slider */
+  --slider_lower_fill_color: var(--theme_color_blue);
+  --slider_track_background_hover_color: var(--theme_color_background_bar);
+  --slider_grabbed_knob_background_color: var(--theme_color_blue);
+
+  /* Progress bar shown when generating images */
+  --progress_bar_color: var(--theme_color_green);
+  --progress_bar_text_color: var(--theme_color_text_highlight);
+
+  /* Gallery */
+  --image_border_color: var(--theme_color_border_low_visibility);
+
+  --font_family: "Segoe UI", Arial, sans-serif;
+  --left-column-width: 800px;
+  --border_radius: 0;
+  --favicon: url('file=favicon.svg');
 }
 
 /* Quickcss extension */
@@ -39,7 +70,7 @@ input[type=color] {
 
 /* Gradio app font */
 .gradio-container {
-  font-family: var(--Font_Family);
+  font-family: var(--font_family);
 }
 
 /* Hide Gradio text, progress bar and animations */
@@ -59,7 +90,7 @@ input[type=color] {
   inset: 0;
   display: flex;
   justify-content: center;
-  color: var(--Input_text_color);
+  color: var(--input_text_color);
 }
 
 /* Gradio 3.8 adds opacity to progress bar which makes it blink; disable it here */
@@ -67,9 +98,14 @@ input[type=color] {
   opacity: 1;
 }
 
+/* Remove rounded borders everywhere */
+.gr-compact .gr-box {
+  border-radius: 0 !important;
+}
+
 /* Tab buttons */
 #tabs > div:first-of-type button {
-  font-family: var(--Font_Family);
+  font-family: var(--font_family);
   font-size: 90%;
   /*transition: all 0.3s ease-in-out;*/
   border-bottom-left-radius: 0px !important;
@@ -77,26 +113,25 @@ input[type=color] {
 }
 
 #tabs > div:first-of-type button:hover {
-  border-color: 0 0 0 0.2em var(--Input_text_color_focus);
+  border-color: 0 0 0 0.2em var(--input_focus_color);
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
 
 /* UI border radius */
 .gradio-container * {
-  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  border-radius: var(--border_radius) !important;
 }
 
-/* Selected text colors */
+/* Selected text colors, TODO seems to get overridden by something in the prompt text area */
 *::selection {
-  color: var(--Input_text_color_focus);
-  background-color: var(--Secondary_color);
+  color: var(--theme_color_text_low_importance);
+  background-color: var(--input_focus_color);;
 }
 
 /* App Colors */
 .dark,
 .dark\:bg-gray-900,
-.dark .gr-button-primary,
 .dark .dark\:text-gray-200,
 .dark .text-gray-700,
 .dark .text-gray-800,
@@ -104,27 +139,27 @@ input[type=color] {
 .dark .text-gray-500,
 .dark .\!text-gray-700,
 .dark .\!text-gray-800 {
-  color: var(--App_color);
+  color: var(--theme_color_text_main);
 }
 
 /* Input Colors */
 
 .dark .gr-input {
-  font-family: var(--Font_Family);
-  color: var(--Input_text_color);
+  font-family: var(--font_family);
+  color: var(--input_text_color);
   transition: all 0.1s ease-in-out;
 }
 
 .dark .gr-input:focus,
 .dark .gr-input:hover  {
-  color: var(--Input_text_color_focus);
-  background-color: var(--Secondary_color);
-  border-color: var(--Input_text_color_focus);
+  color: var(--input_focus_color);
+  background-color: var(--input_focus_background_color);
+  border-color: var(--input_focus_color);
 }
 
 .dark .gr-input::selection {
-  color: var(--Input_text_color_focus);
-  background-color: var(--Background_color);
+  color: var(--input_focus_color);
+  background-color: var(--background_color);
 }
 
 /* Background colors */
@@ -144,7 +179,7 @@ input[type=color] {
 .dark label.block span,
 #quicksettings,
 #tabs .tabitem .gr-compact {
-  background-color: var(--Background_color);
+  background-color: var(--background_color);
 }
 
 .dark .dark\:bg-gray-200,
@@ -153,15 +188,12 @@ background-color: transparent !important;
 
 }
 
-/* Gallery ----------------------------------------------------------------- */
+/* Gallery (the area where resulting images appear) ------------------------ */
 
 [id$="_gallery"].gr-block.gr-box {
-
-  border-radius: calc(0.25px *var(--UI_radius)) !important;
-  background: none;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  border-radius: var(--border_radius) !important;
+  border-color: var(--theme_color_border_main) !important;
+  background: var(--theme_color_background_panel);
   transition: all 1s ease-in-out;
   box-shadow: 0 0 0 0.2em transparent;
 }
@@ -170,48 +202,26 @@ background-color: transparent !important;
   max-height: 60vh;
 }
 
-
-[id$="_gallery"] svg{
+[id$="_gallery"] svg {
   display: none;
-}
-
-#txt2img_gallery:hover,
-#img2img_gallery:hover,
-#extras_gallery:hover,
-#depthmap_gallery:hover,
-#ti_gallery:hover,
-#sp_gallery:hover {
-  box-shadow: 0 0 0 0.5em transparent;
-  animation: pulse2 .3s, change-color-border 5s linear infinite;
-  -webkit-animation: pulse2 0.3s, change-color-border 5s linear infinite;
-  -moz-animation: pulse2 0.3s, change-color-border 5s linear infinite;
-  -o-animation: pulse2 0.3s, change-color-border 5s linear infinite;
-}
-
-@keyframes change-color-border {
-  0% {border-color: var(--Input_text_color_focus);}
-  25% {border-color: var(--Secondary_color);}
-  50% {border-color: var(--Input_text_color_focus);}
-  75% {border-color: var(--Background_color);}
-  100% {border-color: var(--Input_text_color_focus);}
 }
 
 .dark .gr-input-label,
 .dark .gr-button {
-  background-image:  none;
+  background-image: none;
   transition: all 0.3s ease-in-out;
 }
 
-
+/* This seems to be at least the small X button on the top right to close a zoomed image */
 .backdrop-blur .modify-upload .hover\:shadow-xl{
-  border-style:solid;
-  border-color: var(--Secondary_color);
-  border-width:1px;
+  border-style: solid;
+  border-color: var(--button_border_color);
+  border-width: 1px;
  }
 
  /* Svg */
  .dark .backdrop-blur .modify-upload svg{
-  display:block !important;
+  display: block !important;
 }
 
 /* Gallery items*/
@@ -220,13 +230,15 @@ background-color: transparent !important;
   border-width: 2px;
 }
 
+/* Image border color */
+/* TODO: This looks like this might break when Gradio is updated! */
 .dark .gallery-item.svelte-1g9btlg.svelte-1g9btlg {
-  --tw-ring-color: var(--Primary_color) !important;
+  --tw-ring-color: var(--image_border_color) !important;
 }
 
 .dark .dark\:bg-gray-900 {
   --tw-bg-opacity: 1;
-  background-color: var(--Background_color);
+  background-color: var(--background_color);
 }
 
 /* Gallery items fix */
@@ -250,27 +262,23 @@ background-color: transparent !important;
   min-height: 90% !important;
 }
 
-
 /* Checkboxes -------------------------------------------------------------- */
+
+/* Checkbox checked */
 .dark .gr-check-radio:checked {
-  background-color: #444;
+  background-color: var(--theme_color_blue);
 }
 
-.dark .gr-input-label:hover {
-  border-color: var(--Secondary_color);
-  color: var(--Input_text_color_focus);
-  animation: pulse3 0.3s;
-  -webkit-animation: pulse3 0.3s;
-  -moz-animation: pulse3 0.3s;
-  -o-animation: pulse3 0.3s;
-  box-shadow: 0 0 0 0.5em transparent;
-}
-    @keyframes pulse3 {
-      0% { box-shadow: 0 0 0 0 var(--Checked_text); }
-}
-
+/* Text color of checked checkbox */
 input[type=checkbox]:checked + span, input[type=radio]:checked + span {
-color: var(--Primary_color);
+  color: var(--theme_color_text_main);
+}
+
+/* Radio button hover */
+.dark .gr-input-label:hover {
+  border-color: var(--theme_color_blue);;
+  color: var(--theme_color_text_main);
+  box-shadow: 0 0 0 0.5em transparent;
 }
 
 
@@ -279,20 +287,20 @@ color: var(--Primary_color);
   width: 100%;
   height: 22px;
   background: transparent;
-  border-color: var(--Secondary_color);
-  border-width: 0.5px;
-  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  /*border-color: transparent;
+  border-width: 0.5px;*/
+  border-radius: var(--border_radius) !important;
   cursor: progress;
 }
 
 .dark .progressDiv .progress {
-  font-family: var(--Font_Family);
-  background: var(--Progress_bar_color);
-  color: var(--Progress_bar_text_color);
+  font-family: var(--font_family);
+  background: var(--progress_bar_color);
+  color: var(--progress_bar_text_color);
   font-weight: bold;
   line-height: 18px;
   text-align: right;
-  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  border-radius: var(--border_radius) !important;
   cursor: progress;
 }
 
@@ -315,19 +323,19 @@ color: var(--Primary_color);
 }
 
  #txt2img_progress_row > div {
-  min-width: calc(var(--left-column));
-  max-width: var(--left-column);
+  min-width: calc(var(--left-column-width));
+  max-width: var(--left-column-width);
 }
 
 /* txt2img generation parameters left panel width -------------------------- */
 #txt2img_settings {
-  min-width: var(--left-column);
-  max-width: var(--left-column);
+  min-width: var(--left-column-width);
+  max-width: var(--left-column-width);
 }
 
 .dark .overflow-hidden .flex .flex-col .relative col .gap-4 {
-  min-width: var(--left-column);
-  max-width: var(--left-column);
+  min-width: var(--left-column-width);
+  max-width: var(--left-column-width);
 }
 
 /* Buttons ----------------------------------------------------------------- */
@@ -342,7 +350,7 @@ color: var(--Primary_color);
 #img2img_interrupt,
 #txt2img_skip,
 #img2img_skip {
-  background: var(--Background_color);
+  background: var(--background_color);
   z-index: 11;
   transition: all 0.3s ease-in-out;
 }
@@ -351,46 +359,58 @@ color: var(--Primary_color);
 #img2img_interrupt:hover,
 #txt2img_skip:hover,
 #img2img_skip:hover {
-  background: var(--Secondary_color);
-  color: var(--Input_text_color_focus);
+  background: var(--theme_color_red);
+  color: var(--theme_color_background_main);
   z-index: 11;
 }
+
+/* Call-to-action button */
 
 .dark .gr-button-primary,
 #modelmerger_merge,
 #deforum_generate,
 #depthmap_generate,
 #vxa_gen_btn {
-  font-family: var(--Font_Family);
-  border-color: var(--Primary_color);
+  font-family: var(--font_family);
+  font-variant: small-caps;
+  border-color: var(--theme_color_green);
   border-width: 4px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  color: var(--App_color);
+  color: var(--theme_color_green);
   z-index: 10;
   transition: all 0.3s ease-in-out;
 }
 
+.dark .gr-button-primary:hover,
+#modelmerger_merge:hover,
+#deforum_generate:hover,
+#depthmap_generate:hover,
+#vxa_gen_btn:hover {
+  border-color: var(--theme_color_green);
+  border-width: 4px;
+  background-color: var(--theme_color_green);
+  color: var(--background_color);
+  animation: pulse2 0.3s;
+  -webkit-animation: pulse2 0.3s;
+  -moz-animation: pulse2 0.3s;
+  -o-animation: pulse2 0.3s;
+  box-shadow: 0 0 0 0.5em transparent;
+}
+
+/* Generic buttons (Open, Save, Send to img2img, Random seed, Previous seed, Save style etc.)*/
 .dark .gr-button-secondary,
 .dark .gr-button-tool {
-  font-family: var(--Font_Family);
-  border-color: var(--Secondary_color);
+  font-family: var(--font_family);
+  border-color: var(--button_border_color);
+  background: var(--button_background_color);
+  color: var(--button_text_color);
   border-width: 1px;
-  color: var(--App_color);
   transition: all 0.3s ease-in-out;
 }
 
-
-/* Buttons pulse animation ------------------------------------------------- */
-
-/* Generate button */
-#txt2img_generate:hover,
-#img2img_generate:hover {
-  color: black;
-  box-shadow: 0 0 0 2em transparent;
-}
-
+/* Main generate button flash animation on click */
 #txt2img_generate:active,
 #img2img_generate:active {
   animation: pulse 0.3s;
@@ -399,73 +419,48 @@ color: var(--Primary_color);
   -o-animation: pulse 0.3s;
 }
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 var(--Primary_color) }
+  0% { box-shadow: 0 0 0 0 var(--theme_color_green) }
 }
 
-/*Primary*/
-.dark .gr-button-primary:hover,
-#modelmerger_merge:hover,
-#deforum_generate:hover,
-#depthmap_generate:hover,
-#vxa_gen_btn:hover {
-  border-color: var(--Input_text_color_focus);
-  border-width: 4px;
-  background-color: var(--Primary_color);
-  color: var(--Input_text_color_focus);
-  animation: pulse2 0.3s;
-  -webkit-animation: pulse2 0.3s;
-  -moz-animation: pulse2 0.3s;
-  -o-animation: pulse2 0.3s;
-  box-shadow: 0 0 0 0.5em transparent;
-}
-
-/*Secondary*/
+/* Secondary button on hover */
 .dark .gr-button-secondary:hover,
 .dark .gr-button-tool:hover {
-  border-color: var(--Input_text_color_focus);
+  border-color: var(--theme_color_blue);
   border-width: 1px;
-  background-color: var(--Secondary_color);
-  color: var(--Input_text_color_focus);
-  box-shadow: 0 0 0 0.5em transparent;
-  animation: pulse2 0.3s;
-  -webkit-animation: pulse2 0.3s;
-  -moz-animation: pulse2 0.3s;
-  -o-animation: pulse2 0.3s;
-}
-@keyframes pulse2 {
-    0% { box-shadow: 0 0 0 0 var(--Input_text_color_focus); }
+  background-color: var(--theme_color_background_bar);
+  color: var(--theme_color_blue);
 }
 
-/* Context menu ------------------------------------------------------------ */
+/* Context/Right-click menu, appears at least when right-clicking Generate button */
 #context-menu {
-  font-family: var(--Font_Family);
-  border-color: var(--Primary_color);
-  /*box-shadow: 1px 1px 2px var(--Primary_color);*/
+  font-family: var(--font_family);
+  border-color: var(--theme_color_border_main);
+  box-shadow: none;
 }
 
+/* TODO This seemed to do nothing
 .dark .context-menu-items a:hover {
-  background: var(--Secondary_color);
-  color: var(--Input_text_color_focus);
-  /*box-shadow: 1px 1px 2px var(--Secondary_color);*/
-
-}
+  background: CYAN !important;
+  color: CYAN !important;
+  box-shadow: none;
+}*/
 .dark .context-menu-items {
   transition: all 0.3s ease-in-out;
 }
 
-/* Gradio 3.4.1 stuff for editable scrollbar values */
+/* Number input field, the ones accompanying sliders with the up/down arrow buttons */
 .dark .gr-box > div > div > input.gr-text-input{
   position: absolute;
   right: 0.5em;
   top: -0.6em;
   z-index: 200;
   width: 8em;
-  border-color: var(--Secondary_color);
+  border-color: var(--input_number_border_color);
 }
 
 .dark .gr-box > div > div > input.gr-text-input:hover,
 .dark .gr-box > div > div > input.gr-text-input:focus {
-  border-color: var(--Input_text_color_focus);
+  border-color: var(--input_number_border_hover_color);
 }
 
 /* Quicksettings Range*/
@@ -485,7 +480,7 @@ color: var(--Primary_color);
 .gradio-container input[type=range] {
   -webkit-appearance: none;
   outline: none;
-  opacity: 0.7;
+  opacity: 1.0;
   background: transparent;
 
   margin: auto;
@@ -508,43 +503,43 @@ color: var(--Primary_color);
   opacity: 1.0;*/
 }
 .gradio-container input[type=range]:hover::-webkit-slider-runnable-track {
-  background: var(--App_color);
-  opacity: 0.4;
+  background: var(--slider_track_background_hover_color);
+  opacity: 1.0;
 }
 
 /* THUMB SLIDER */
 .gradio-container input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  box-shadow: -400px 0 0 400px var(--Bar_background_color);
+  box-shadow: -900px 0 0 900px var(--slider_lower_fill_color);
   /*box-shadow: 0 0 3px cyan;*/
 
   border: 4px solid white;
   background: white;
-  /*border: 2px solid var(--App_color);*/
+  /*border: 2px solid var(--slider_track_background_hover_color);*/
   height: 10px;
   width: 10px;
   border-radius: 0px;
   /*background:   orange;*/
-  /*background:   var(--Primary_color);*/
+  /*background:   var(--slider_track_background_hover_color);*/
   margin-top: -5px;
 }
 
 .gradio-container input[type=range]:active::-webkit-slider-thumb {
-  background:   var(--Secondary_color);
+  background: var(--slider_grabbed_knob_background_color);
 }
-
-/*.border {
-  border-width: 0;
-}*/
 
 /* Footer */
 #footer {
-  opacity: 0.4;
+  color: var(--theme_color_text_low_importance);
 }
 
 
-
+/* Text description of generated photos, basically recap of the parameters you just used */
+#html_info_txt2img,
+#html_info_x_extras {
+  color: var(--theme_color_text_low_importance);
+}
 
 
 
