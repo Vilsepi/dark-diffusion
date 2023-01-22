@@ -48,6 +48,7 @@
 
   /* Gallery */
   --image_border_color: var(--theme_color_border_low_visibility);
+  --gallery_panel_background_color: var(--theme_color_background_panel);
 
   --font_family: "Segoe UI", Arial, sans-serif;
   --left-column-width: 800px;
@@ -147,11 +148,6 @@ input[type=color] {
   color: var(--theme_color_text_main);
 }
 
-/* Image gallery area during image generation with live preview */
-.dark .livePreview {
-  background-color: transparent;
-}
-
 /* Input Colors */
 
 .dark .gr-input {
@@ -203,9 +199,15 @@ background-color: transparent !important;
 [id$="_gallery"].gr-block.gr-box {
   border-radius: var(--border_radius) !important;
   border-color: var(--theme_color_border_main) !important;
-  background: var(--theme_color_background_panel);
+  background: var(--gallery_panel_background_color);
   transition: all 1s ease-in-out;
   box-shadow: 0 0 0 0.2em transparent;
+}
+
+/* Image gallery area during image generation with live preview */
+.dark .livePreview {
+  /* Note: If you put transparent here, the previous images will show under the live preview images*/
+  background-color: var(--gallery_panel_background_color);
 }
 
 .dark .group {
