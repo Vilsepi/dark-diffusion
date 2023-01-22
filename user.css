@@ -1,0 +1,733 @@
+
+:root, * , quickcss_target{
+    --App_color: #cf43de;
+
+    --Primary_color: #eee; /* BRIGHT, Action button, selected radio button, slider handle */
+    --Secondary_color: #2e2e32; /* DARKISH, hovered input field background , number field border, secondary button border and hover, */
+    --Input_text_color: #eee; /* BRIGHT, text and numbers in input fields, dropdown selected text */
+    --Input_text_color_focus: #eee; /* BRIGHT (inverse of secondary color), text when hovered, dropdown item text*/
+
+    --Background_color: #1d1e20;
+    --Checked_text: #eee;
+
+    --Bar_background_color: var(--App_color);
+
+    /* Progress bar shown when generating images */
+    --Progress_bar_color: var(--App_color);
+    --Progress_bar_text_color: #fff;
+
+    --Font_Family: "Segoe UI", Arial, sans-serif;
+
+    --UI_radius: 0; /* border radius */
+    --favicon: url('file=favicon.svg');
+    --left_panel_width: 40;
+    --left-column: calc(20px *var(--left_panel_width));
+}
+
+/* Quickcss extension */
+#hidden{
+  visibility: hidden;
+}
+
+#quickcss_colorpicker {
+  max-width: 10vw;
+}
+
+input[type=color] {
+  width: 100%;
+}
+
+/* Gradio app font */
+.gradio-container {
+  font-family: var(--Font_Family);
+}
+
+/* Hide Gradio text, progress bar and animations */
+* .wrap.m-12,
+* .wrap.z-20,
+* .meta-text-center,
+* .meta-text,
+* .wrap.m-12 svg,
+* .wrap.z-20 svg,
+* .wrap.svelte-1w9161c {
+  display:none;
+  inset: 100%;
+}
+
+/* Show loading text on SD models selector */
+#setting_sd_model_checkpoint .wrap.svelte-1w9161c {
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  color: var(--Input_text_color);
+}
+
+/* Gradio 3.8 adds opacity to progress bar which makes it blink; disable it here */
+.dark .transition.opacity-20 {
+  opacity: 1;
+}
+
+/* Tab buttons */
+#tabs > div:first-of-type button {
+  font-family: var(--Font_Family);
+  font-size: 90%;
+  /*transition: all 0.3s ease-in-out;*/
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+#tabs > div:first-of-type button:hover {
+  border-color: 0 0 0 0.2em var(--Input_text_color_focus);
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+/* UI border radius */
+.gradio-container * {
+  border-radius: calc(0.25px *var(--UI_radius)) !important;
+}
+
+/* Selected text colors */
+*::selection {
+  color: var(--Input_text_color_focus);
+  background-color: var(--Secondary_color);
+}
+
+/* App Colors */
+.dark,
+.dark\:bg-gray-900,
+.dark .gr-button-primary,
+.dark .dark\:text-gray-200,
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-gray-900,
+.dark .text-gray-500,
+.dark .\!text-gray-700,
+.dark .\!text-gray-800 {
+  color: var(--App_color);
+}
+
+/* Input Colors */
+
+.dark .gr-input {
+  font-family: var(--Font_Family);
+  color: var(--Input_text_color);
+  transition: all 0.1s ease-in-out;
+}
+
+.dark .gr-input:focus,
+.dark .gr-input:hover  {
+  color: var(--Input_text_color_focus);
+  background-color: var(--Secondary_color);
+  border-color: var(--Input_text_color_focus);
+}
+
+.dark .gr-input::selection {
+  color: var(--Input_text_color_focus);
+  background-color: var(--Background_color);
+}
+
+/* Background colors */
+.dark,
+.dark .gr-button,
+.dark .bg-white,
+.dark .gr-panel,
+.dark .gr-button-lg,
+.dark .gr-box,
+.dark .gr-button-tool,
+.dark .dark\:bg-gray-700,
+.dark .dark\:bg-gray-950,
+.dark .bg-gray-700,
+.dark .bg-gray-950,
+.dark fieldset span.text-gray-500,
+.dark .gr-block.gr-box span.text-gray-500,
+.dark label.block span,
+#quicksettings,
+#tabs .tabitem .gr-compact {
+  background-color: var(--Background_color);
+}
+
+.dark .dark\:bg-gray-200,
+.dark .bg-gray-200 {
+background-color: transparent !important;
+
+}
+
+/* Gallery ----------------------------------------------------------------- */
+
+[id$="_gallery"].gr-block.gr-box {
+
+  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  background: none;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 0 0.2em transparent;
+}
+
+.dark .group {
+  max-height: 60vh;
+}
+
+
+[id$="_gallery"] svg{
+  display: none;
+}
+
+#txt2img_gallery:hover,
+#img2img_gallery:hover,
+#extras_gallery:hover,
+#depthmap_gallery:hover,
+#ti_gallery:hover,
+#sp_gallery:hover {
+  box-shadow: 0 0 0 0.5em transparent;
+  animation: pulse2 .3s, change-color-border 5s linear infinite;
+  -webkit-animation: pulse2 0.3s, change-color-border 5s linear infinite;
+  -moz-animation: pulse2 0.3s, change-color-border 5s linear infinite;
+  -o-animation: pulse2 0.3s, change-color-border 5s linear infinite;
+}
+
+@keyframes change-color-border {
+  0% {border-color: var(--Input_text_color_focus);}
+  25% {border-color: var(--Secondary_color);}
+  50% {border-color: var(--Input_text_color_focus);}
+  75% {border-color: var(--Background_color);}
+  100% {border-color: var(--Input_text_color_focus);}
+}
+
+.dark .gr-input-label,
+.dark .gr-button {
+  background-image:  none;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.backdrop-blur .modify-upload .hover\:shadow-xl{
+  border-style:solid;
+  border-color: var(--Secondary_color);
+  border-width:1px;
+ }
+
+ /* Svg */
+ .dark .backdrop-blur .modify-upload svg{
+  display:block !important;
+}
+
+/* Gallery items*/
+/*----------------------------------------------------------------*/
+#gallery_item {
+  border-width: 2px;
+}
+
+.dark .gallery-item.svelte-1g9btlg.svelte-1g9btlg {
+  --tw-ring-color: var(--Primary_color) !important;
+}
+
+.dark .dark\:bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: var(--Background_color);
+}
+
+/* Gallery items fix */
+/*----------------------------------------------------------------*/
+#img2img_image,
+#img2img_image > .h-60,
+#img2img_image > .h-60 > div,
+#img2img_image > .h-60 > div > img,
+#img2img_sketch,
+#img2img_sketch > .h-60,
+#img2img_sketch > .h-60 > div,
+#img2img_sketch > .h-60 > div > img,
+#img2maskimg, #img2maskimg > .h-60,
+#img2maskimg > .h-60 > div,
+#img2maskimg > .h-60 > div > img,
+#inpaint_sketch, #inpaint_sketch > .h-60,
+#inpaint_sketch > .h-60 > div,
+#inpaint_sketch > .h-60 > div > img {
+  height: 550px;
+  max-height: 100% !important;
+  min-height: 90% !important;
+}
+
+
+/* Checkboxes -------------------------------------------------------------- */
+.dark .gr-check-radio:checked {
+  background-color: #444;
+}
+
+.dark .gr-input-label:hover {
+  border-color: var(--Secondary_color);
+  color: var(--Input_text_color_focus);
+  animation: pulse3 0.3s;
+  -webkit-animation: pulse3 0.3s;
+  -moz-animation: pulse3 0.3s;
+  -o-animation: pulse3 0.3s;
+  box-shadow: 0 0 0 0.5em transparent;
+}
+    @keyframes pulse3 {
+      0% { box-shadow: 0 0 0 0 var(--Checked_text); }
+}
+
+input[type=checkbox]:checked + span, input[type=radio]:checked + span {
+color: var(--Primary_color);
+}
+
+
+/* Progress bar ------------------------------------------------------------ */
+.dark .progressDiv{
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  border-color: var(--Secondary_color);
+  border-width: 0.5px;
+  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  cursor: progress;
+}
+
+.dark .progressDiv .progress {
+  font-family: var(--Font_Family);
+  background: var(--Progress_bar_color);
+  color: var(--Progress_bar_text_color);
+  font-weight: bold;
+  line-height: 18px;
+  text-align: right;
+  border-radius: calc(0.25px *var(--UI_radius)) !important;
+  cursor: progress;
+}
+
+/* Progress bar position*/
+#txt2img_progressbar, #img2img_progressbar, #ti_progressbar{
+  position: absolute;
+  z-index: 1000;
+  right: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: block;
+  cursor: progress;
+}
+
+#txt2img_progress_row, #img2img_progress_row{
+  margin-bottom: 10px;
+  margin-top: -18px;
+  flex-direction:column;
+  gap: 0;
+}
+
+ #txt2img_progress_row > div {
+  min-width: calc(var(--left-column));
+  max-width: var(--left-column);
+}
+
+/* txt2img generation parameters left panel width -------------------------- */
+#txt2img_settings {
+  min-width: var(--left-column);
+  max-width: var(--left-column);
+}
+
+.dark .overflow-hidden .flex .flex-col .relative col .gap-4 {
+  min-width: var(--left-column);
+  max-width: var(--left-column);
+}
+
+/* Buttons ----------------------------------------------------------------- */
+#txt2img_generate,
+#img2img_generate {
+  letter-spacing: .2rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+#txt2img_interrupt,
+#img2img_interrupt,
+#txt2img_skip,
+#img2img_skip {
+  background: var(--Background_color);
+  z-index: 11;
+  transition: all 0.3s ease-in-out;
+}
+
+#txt2img_interrupt:hover,
+#img2img_interrupt:hover,
+#txt2img_skip:hover,
+#img2img_skip:hover {
+  background: var(--Secondary_color);
+  color: var(--Input_text_color_focus);
+  z-index: 11;
+}
+
+.dark .gr-button-primary,
+#modelmerger_merge,
+#deforum_generate,
+#depthmap_generate,
+#vxa_gen_btn {
+  font-family: var(--Font_Family);
+  border-color: var(--Primary_color);
+  border-width: 4px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: var(--App_color);
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .gr-button-secondary,
+.dark .gr-button-tool {
+  font-family: var(--Font_Family);
+  border-color: var(--Secondary_color);
+  border-width: 1px;
+  color: var(--App_color);
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Buttons pulse animation ------------------------------------------------- */
+
+/* Generate button */
+#txt2img_generate:hover,
+#img2img_generate:hover {
+  color: black;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+#txt2img_generate:active,
+#img2img_generate:active {
+  animation: pulse 0.3s;
+  -webkit-animation: pulse 0.3s;
+  -moz-animation: pulse 0.3s;
+  -o-animation: pulse 0.3s;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--Primary_color) }
+}
+
+/*Primary*/
+.dark .gr-button-primary:hover,
+#modelmerger_merge:hover,
+#deforum_generate:hover,
+#depthmap_generate:hover,
+#vxa_gen_btn:hover {
+  border-color: var(--Input_text_color_focus);
+  border-width: 4px;
+  background-color: var(--Primary_color);
+  color: var(--Input_text_color_focus);
+  animation: pulse2 0.3s;
+  -webkit-animation: pulse2 0.3s;
+  -moz-animation: pulse2 0.3s;
+  -o-animation: pulse2 0.3s;
+  box-shadow: 0 0 0 0.5em transparent;
+}
+
+/*Secondary*/
+.dark .gr-button-secondary:hover,
+.dark .gr-button-tool:hover {
+  border-color: var(--Input_text_color_focus);
+  border-width: 1px;
+  background-color: var(--Secondary_color);
+  color: var(--Input_text_color_focus);
+  box-shadow: 0 0 0 0.5em transparent;
+  animation: pulse2 0.3s;
+  -webkit-animation: pulse2 0.3s;
+  -moz-animation: pulse2 0.3s;
+  -o-animation: pulse2 0.3s;
+}
+@keyframes pulse2 {
+    0% { box-shadow: 0 0 0 0 var(--Input_text_color_focus); }
+}
+
+/* Context menu ------------------------------------------------------------ */
+#context-menu {
+  font-family: var(--Font_Family);
+  border-color: var(--Primary_color);
+  /*box-shadow: 1px 1px 2px var(--Primary_color);*/
+}
+
+.dark .context-menu-items a:hover {
+  background: var(--Secondary_color);
+  color: var(--Input_text_color_focus);
+  /*box-shadow: 1px 1px 2px var(--Secondary_color);*/
+
+}
+.dark .context-menu-items {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Gradio 3.4.1 stuff for editable scrollbar values */
+.dark .gr-box > div > div > input.gr-text-input{
+  position: absolute;
+  right: 0.5em;
+  top: -0.6em;
+  z-index: 200;
+  width: 8em;
+  border-color: var(--Secondary_color);
+}
+
+.dark .gr-box > div > div > input.gr-text-input:hover,
+.dark .gr-box > div > div > input.gr-text-input:focus {
+  border-color: var(--Input_text_color_focus);
+}
+
+/* Quicksettings Range*/
+#quicksettings [id^="setting_"] {
+  display: grid;
+}
+
+/* Gr-block gap and padding */
+.gr-block.gr-box {
+  row-gap: 1.1ch;
+  padding: 1.1em;
+}
+
+/* Sliders ----------------------------------------------------------------- */
+
+/* Override default slider */
+.gradio-container input[type=range] {
+  -webkit-appearance: none;
+  outline: none;
+  opacity: 0.7;
+  background: transparent;
+
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  height: 10px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0;
+}
+.gradio-container input[type=range]:focus {
+  outline: none;
+}
+
+/* Slider track */
+.gradio-container input[type=range]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 3px;
+  /*background:  #222;
+  opacity: 1.0;*/
+}
+.gradio-container input[type=range]:hover::-webkit-slider-runnable-track {
+  background: var(--App_color);
+  opacity: 0.4;
+}
+
+/* THUMB SLIDER */
+.gradio-container input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  box-shadow: -400px 0 0 400px var(--Bar_background_color);
+  /*box-shadow: 0 0 3px cyan;*/
+
+  border: 4px solid white;
+  background: white;
+  /*border: 2px solid var(--App_color);*/
+  height: 10px;
+  width: 10px;
+  border-radius: 0px;
+  /*background:   orange;*/
+  /*background:   var(--Primary_color);*/
+  margin-top: -5px;
+}
+
+.gradio-container input[type=range]:active::-webkit-slider-thumb {
+  background:   var(--Secondary_color);
+}
+
+/*.border {
+  border-width: 0;
+}*/
+
+/* Footer */
+#footer {
+  opacity: 0.4;
+}
+
+
+
+
+
+
+
+/* Normalize.css ----------------------------------------------------------- */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+a {
+  background-color: transparent;
+}
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+img {
+  border-style: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
