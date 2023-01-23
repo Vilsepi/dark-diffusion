@@ -148,7 +148,13 @@ input[type=color] {
   color: var(--theme_color_text_main);
 }
 
-/* Input Colors */
+/* Prompt input */
+
+/* Make text input more readable by not having monitor-wide lines */
+#txt2img_prompt_container,
+#img2img_prompt_container {
+  max-width: 1100px;
+}
 
 .dark .gr-input {
   font-family: var(--font_family);
@@ -400,6 +406,11 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 }
 
 /* Call-to-action button */
+
+#txt2img_actions_column,
+#img2img_actions_column {
+  max-width: 300px;
+}
 
 .dark .gr-button-primary,
 #modelmerger_merge,
