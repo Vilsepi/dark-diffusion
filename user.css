@@ -124,6 +124,12 @@ input[type=color] {
   border-bottom-right-radius: 0px !important;
 }
 
+.dark .border,
+.border-gray-200,
+.dark\:border-gray-700 {
+  border-color: var(--theme_color_border_main) !important;
+}
+
 /* UI border radius */
 .gradio-container * {
   border-radius: var(--border_radius) !important;
@@ -148,7 +154,7 @@ input[type=color] {
   color: var(--theme_color_text_main);
 }
 
-/* Prompt input */
+/* Input fields (text input, dropdowns) */
 
 /* Make text input more readable by not having monitor-wide lines */
 #txt2img_prompt_container,
@@ -160,6 +166,7 @@ input[type=color] {
   font-family: var(--font_family);
   color: var(--input_text_color);
   transition: all 0.1s ease-in-out;
+  border-color: var(--theme_color_border_main);
 }
 
 .dark .gr-input:focus,
@@ -196,8 +203,7 @@ input[type=color] {
 
 .dark .dark\:bg-gray-200,
 .dark .bg-gray-200 {
-background-color: transparent !important;
-
+  background-color: transparent !important;
 }
 
 /* Gallery (the area where resulting images appear) ------------------------ */
@@ -230,16 +236,16 @@ background-color: transparent !important;
   transition: all 0.3s ease-in-out;
 }
 
-/* This seems to be at least the small X button on the top right to close a zoomed image */
+/* This is at least the small X button on the top right to close a zoomed image (which is pretty hard to see) */
 .backdrop-blur .modify-upload .hover\:shadow-xl{
-  border-style: solid;
-  border-color: var(--button_border_color);
-  border-width: 1px;
+  border: 2px solid var(--theme_color_blue);
+  background: var(--theme_color_background_bar);
  }
 
- /* Svg */
+ /* This is the small X symbol in the button */
  .dark .backdrop-blur .modify-upload svg{
   display: block !important;
+  stroke: #fff;
 }
 
 /* Gallery items ----------------------------------------------------------- */
