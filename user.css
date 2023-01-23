@@ -236,8 +236,7 @@ background-color: transparent !important;
   display: block !important;
 }
 
-/* Gallery items*/
-/*----------------------------------------------------------------*/
+/* Gallery items ----------------------------------------------------------- */
 #gallery_item {
   border-width: 2px;
 }
@@ -253,8 +252,7 @@ background-color: transparent !important;
   background-color: var(--background_color);
 }
 
-/* Gallery items fix */
-/*----------------------------------------------------------------*/
+/* Gallery items fix (No idea what this fixes exactly) */
 #img2img_image,
 #img2img_image > .h-60,
 #img2img_image > .h-60 > div,
@@ -272,6 +270,16 @@ background-color: transparent !important;
   height: 550px;
   max-height: 100% !important;
   min-height: 90% !important;
+}
+
+/* Hide button "Open images output directory" as it opens the file explorer on
+the server, and does not work with multiple devices. Open file explorer manually. */
+#open_folder_txt2img {
+  display: none;
+}
+
+#image_buttons_txt2img {
+  max-width: 800px;
 }
 
 /* Checkboxes -------------------------------------------------------------- */
@@ -560,7 +568,6 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 #html_log_img2img {
   color: var(--theme_color_text_low_importance);
 }
-
 
 
 
