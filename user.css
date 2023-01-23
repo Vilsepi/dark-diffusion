@@ -578,11 +578,22 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 
 /* Display-size tweaks ----------------------------------------------------- */
 
-/* Add small side margins on wide displays */
-@media only screen and (min-width: 2000px) {
+
+@media screen and (min-width: 2500px) {
+
+  /* Add small side margins to whole WebUI*/
   div.gradio-container > div.w-full {
     margin: 0 auto !important;
     width: 95% !important;
+  }
+
+  /* Increase gallery height so that two rows of images fit without scrolling */
+  #txt2img_gallery, #img2img_gallery {
+    min-height: 1024px;
+  }
+
+  #txt2img_gallery > div.overflow-y-auto {
+    max-height: 88vh;
   }
 }
 
