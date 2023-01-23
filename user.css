@@ -274,11 +274,16 @@ background-color: transparent !important;
 
 /* Hide button "Open images output directory" as it opens the file explorer on
 the server, and does not work with multiple devices. Open file explorer manually. */
-#open_folder_txt2img {
+#open_folder_txt2img,
+#open_folder_extras,
+#open_folder_img2img {
   display: none;
 }
 
-#image_buttons_txt2img {
+/* Prevent buttons from overly stretching */
+#image_buttons_txt2img,
+#image_buttons_img2img,
+#image_buttons_extras {
   max-width: 800px;
 }
 
