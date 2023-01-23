@@ -99,7 +99,7 @@ input[type=color] {
   opacity: 1;
 }
 
-/* Remove rounded borders everywhere */
+/* Remove rounded borders from all UI components */
 .gr-compact .gr-box {
   border-radius: 0 !important;
 }
@@ -359,6 +359,11 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 }
 
 /* Buttons ----------------------------------------------------------------- */
+
+.gr-button {
+  border-radius: 4px !important;
+}
+
 #txt2img_generate,
 #img2img_generate {
   letter-spacing: .2rem;
@@ -412,11 +417,15 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   border-width: 4px;
   background-color: var(--theme_color_green);
   color: var(--background_color);
-  animation: pulse2 0.3s;
-  -webkit-animation: pulse2 0.3s;
-  -moz-animation: pulse2 0.3s;
-  -o-animation: pulse2 0.3s;
-  box-shadow: 0 0 0 0.5em transparent;
+}
+
+/* Main generate button flash animation on click */
+.dark .gr-button-primary:active {
+  animation: anim_pulse_green 0.2s;
+  -webkit-animation: anim_pulse_green 0.2s;
+  -moz-animation: anim_pulse_green 0.2s;
+  -o-animation: anim_pulse_green 0.2s;
+  box-shadow: 0 0 0 1.0em transparent;
 }
 
 /* Generic buttons (Open, Save, Send to img2img, Random seed, Previous seed, Save style etc.)*/
@@ -430,18 +439,6 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   transition: all 0.3s ease-in-out;
 }
 
-/* Main generate button flash animation on click */
-#txt2img_generate:active,
-#img2img_generate:active {
-  animation: pulse 0.3s;
-  -webkit-animation: pulse 0.3s;
-  -moz-animation: pulse 0.3s;
-  -o-animation: pulse 0.3s;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 var(--theme_color_green) }
-}
-
 /* Secondary button on hover */
 .dark .gr-button-secondary:hover,
 .dark .gr-button-tool:hover {
@@ -450,6 +447,16 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   background-color: var(--theme_color_background_bar);
   color: var(--theme_color_blue);
 }
+
+.dark .gr-button-secondary:active,
+.dark .gr-button-tool:active {
+  animation: anim_pulse_blue 0.2s;
+  -webkit-animation: anim_pulse_blue 0.2s;
+  -moz-animation: anim_pulse_blue 0.2s;
+  -o-animation: anim_pulse_blue 0.2s;
+  box-shadow: 0 0 0 1.0em transparent;
+}
+
 
 /* Context/Right-click menu, appears at least when right-clicking Generate button */
 #context-menu {
@@ -569,7 +576,14 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   color: var(--theme_color_text_low_importance);
 }
 
+/* Animations -------------------------------------------------------------- */
+@keyframes anim_pulse_green {
+  0% { box-shadow: 0 0 0 0 var(--theme_color_green) }
+}
 
+@keyframes anim_pulse_blue {
+  0% { box-shadow: 0 0 0 0 var(--theme_color_blue) }
+}
 
 /* Normalize.css ----------------------------------------------------------- */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
