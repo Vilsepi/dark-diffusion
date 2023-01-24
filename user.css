@@ -511,10 +511,10 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 /* Secondary button on hover */
 .dark .gr-button-secondary:hover,
 .dark .gr-button-tool:hover {
-  border-color: var(--theme_color_blue);
+  border-color: var(--button_background_hover_color);
   border-width: 1px;
   background-color: var(--button_background_hover_color);
-  color: var(--theme_color_blue);
+  color: var(--theme_color_text_highlight);
 }
 
 .dark .gr-button-secondary:active,

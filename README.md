@@ -15,6 +15,7 @@ Launch your WebUI with argument `--theme=dark`. For example, on Windows your `we
 ## Known issues / work-in-progress
 
 - Interrupt/Skip button have red color but blue border
+- Button and tabs in general
 - When server loads something, dark blue curtains appear momentarily (e.g. over checkpoint selection, over prompts) to disable user input.
 - When tokens are being counted, an unstyled word "Loading" appears in the upper-right of a text prompt window.
 
