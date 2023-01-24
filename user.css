@@ -7,26 +7,31 @@
   --theme_color_red: #DB6A5E; /* e.g. error/warning */
   --theme_color_blue: #3B8EEA; /* e.g. notice, accent */
 
+  /* Inputs */
   --theme_color_text_highlight: #EEEEEE;
   --theme_color_text_main: #CCCCCC; /* main text */
   --theme_color_text_main_greyed_out: #8C8C8C; /* e.g. disabled, passive, unavailable */
   --theme_color_text_low_importance: #666666; /* e.g. footer */
+  --theme_color_input_highlight_background: var(--theme_color_blue);
+  --theme_color_input_background: #3C3C3C;
 
+  /* Borders */
   --theme_color_border_main: #474747;
-  /*--theme_color_border_light: #585858;*/
   --theme_color_border_low_visibility: #414141; /* use against darkest #1E1E1E background*/
 
-  --theme_color_background_main: #1E1E1E;
-  --theme_color_background_panel: #252526;
-  --theme_color_background_bar: #3C3C3C;
+  /* Panels */
+  --theme_color_global_background: #1E1E1E;
+  --theme_color_panel_background: #252526;
+  --theme_color_panel_shadow: #151515;
 
-  /* ----------------------------------------------------------------------- */
 
-  --background_color: var(--theme_color_background_main);
+  /* Mapping palette colors to interface types ----------------------------- */
+
+  --background_color: var(--theme_color_global_background);
 
   --input_text_color: var(--theme_color_text_main); /* text and numbers in input fields, dropdown selected text */
   --input_focus_color: var(--theme_color_text_highlight); /* text when hovered, dropdown item text*/
-  --input_focus_background_color: var(--theme_color_background_panel); /* background color when hovering input fields and dropdown menus */
+  --input_focus_background_color: var(--theme_color_panel_background); /* background color when hovering input fields and dropdown menus */
 
   /* Number input field, the ones accompanying sliders with the up/down arrow buttons */
   --input_number_border_color: var(--theme_color_border_main);
@@ -34,12 +39,13 @@
 
   /* Secondary buttons */
   --button_border_color: var(--theme_color_border_main);
-  --button_background_color: var(--theme_color_background_panel);
+  --button_background_color: var(--theme_color_panel_background);
   --button_text_color: var(--theme_color_text_main_greyed_out);
+  --button_background_hover_color: var(--theme_color_input_highlight_background);
 
   /* Slider */
   --slider_lower_fill_color: var(--theme_color_blue);
-  --slider_track_background_hover_color: var(--theme_color_background_bar);
+  --slider_track_background_hover_color: var(--theme_color_input_highlight_background);
   --slider_grabbed_knob_background_color: var(--theme_color_blue);
 
   /* Progress bar shown when generating images */
@@ -48,13 +54,14 @@
 
   /* Gallery */
   --image_border_color: var(--theme_color_border_low_visibility);
-  --gallery_panel_background_color: var(--theme_color_background_panel);
+  --gallery_panel_background_color: var(--theme_color_panel_background);
 
   --font_family: "Segoe UI", Arial, sans-serif;
   --left-column-width: 800px;
   --border_radius: 0;
   --favicon: url('file=favicon.svg');
 }
+
 
 /* Quickcss extension */
 #hidden{
@@ -135,10 +142,10 @@ input[type=color] {
   border-radius: var(--border_radius) !important;
 }
 
-/* Selected text colors, TODO seems to get overridden by something in the prompt text area */
+/* Selected text colors */
 *::selection {
-  color: var(--theme_color_text_low_importance);
-  background-color: var(--input_focus_color);;
+  color: var(--theme_color_text_low_importance) !important;
+  background-color: var(--input_focus_color) !important;
 }
 
 /* App Colors */
@@ -201,6 +208,10 @@ input[type=color] {
   background-color: var(--background_color);
 }
 
+.dark .gr-block.gr-box span.text-gray-500 {
+  border: 0;
+}
+
 .dark .dark\:bg-gray-200,
 .dark .bg-gray-200 {
   background-color: transparent !important;
@@ -220,10 +231,11 @@ input[type=color] {
 .dark .livePreview {
   /* Note: If you put transparent here, the previous images will show under the live preview images*/
   background-color: var(--gallery_panel_background_color);
+  margin: 0px; /* This fixes misaligned curtain that pops out of the gallery panel*/
 }
 
 .dark .group {
-  max-height: 60vh;
+  max-height: 81vh;
 }
 
 [id$="_gallery"] svg {
@@ -239,7 +251,7 @@ input[type=color] {
 /* This is at least the small X button on the top right to close a zoomed image (which is pretty hard to see) */
 .backdrop-blur .modify-upload .hover\:shadow-xl{
   border: 2px solid var(--theme_color_blue);
-  background: var(--theme_color_background_bar);
+  background: var(--button_background_color);
  }
 
  /* This is the small X symbol in the button */
@@ -259,9 +271,11 @@ input[type=color] {
   --tw-ring-color: var(--image_border_color) !important;
 }
 
+/* This is the curtain that hides other images when viewing a specific image.
+This also affect background of tiny Source label in file upload area. */
 .dark .dark\:bg-gray-900 {
   --tw-bg-opacity: 1;
-  background-color: var(--background_color);
+  background-color: var(--theme_color_panel_background);
 }
 
 /* Gallery items fix (No idea what this fixes exactly) */
@@ -320,7 +334,7 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 
 
 /* Progress bar ------------------------------------------------------------ */
-.dark .progressDiv{
+.dark .progressDiv {
   width: 100%;
   height: 22px;
   background: transparent;
@@ -328,6 +342,10 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   border-width: 0.5px;*/
   border-radius: var(--border_radius) !important;
   cursor: progress;
+}
+
+.progressDiv {
+  top: -21px;
 }
 
 .dark .progressDiv .progress {
@@ -364,18 +382,31 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   max-width: var(--left-column-width);
 }
 
-/* txt2img generation parameters left panel width -------------------------- */
+/* txt2img left settings panel */
 #txt2img_settings {
+  border: 1px solid var(--theme_color_border_low_visibility);
+  box-shadow: 0px 2px 4px var(--theme_color_panel_shadow);
+  padding: 20px 10px;
+  min-width: var(--left-column-width);
+  max-width: var(--left-column-width);
+}
+
+#txt2img_settings > div.row {
+  margin-bottom: 40px;
+}
+
+#txt2img_results {
+  padding: 0;
+}
+
+/* img2img left settings panel */
+#img2img_settings {
+  border: 1px solid var(--theme_color_border_low_visibility);
   min-width: var(--left-column-width);
   max-width: var(--left-column-width);
 }
 
 .dark .overflow-hidden .flex .flex-col .relative col .gap-4 {
-  min-width: var(--left-column-width);
-  max-width: var(--left-column-width);
-}
-
-#img2img_settings {
   min-width: var(--left-column-width);
   max-width: var(--left-column-width);
 }
@@ -402,14 +433,15 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   transition: all 0.3s ease-in-out;
 }
 
+/* TODO was this even working?
 #txt2img_interrupt:hover,
 #img2img_interrupt:hover,
 #txt2img_skip:hover,
 #img2img_skip:hover {
   background: var(--theme_color_red);
-  color: var(--theme_color_background_main);
+  color: var(--theme_color_BG_darkest);
   z-index: 11;
-}
+}*/
 
 /* Call-to-action button */
 
@@ -471,7 +503,7 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 .dark .gr-button-tool:hover {
   border-color: var(--theme_color_blue);
   border-width: 1px;
-  background-color: var(--theme_color_background_bar);
+  background-color: var(--button_background_hover_color);
   color: var(--theme_color_blue);
 }
 
@@ -599,8 +631,10 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 #html_info_txt2img,
 #html_info_x_extras,
 #html_info_img2img,
+#html_log_txt2img,
 #html_log_img2img {
   color: var(--theme_color_text_low_importance);
+  margin-top: 10px;
 }
 
 /* Display-size tweaks ----------------------------------------------------- */
