@@ -317,7 +317,11 @@ the server, and does not work with multiple devices. Open file explorer manually
 
 /* Checkboxes -------------------------------------------------------------- */
 
-/* Checkbox checked */
+.dark .gr-check-radio {
+  background-color: var(--theme_color_panel_background);
+  border-color: var(--theme_color_border_main);
+}
+
 .dark .gr-check-radio:checked {
   background-color: var(--theme_color_blue);
 }
