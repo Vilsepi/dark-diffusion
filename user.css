@@ -22,8 +22,6 @@
   /* Panels */
   --theme_color_global_background: #1E1E1E;
   --theme_color_panel_background: #252526;
-  --theme_color_panel_shadow: #151515;
-
 
   /* Mapping palette colors to interface types ----------------------------- */
 
@@ -208,8 +206,12 @@ input[type=color] {
   background-color: var(--background_color);
 }
 
+/* Small text labels on top-left of dropdown & slider inputs */
 .dark .gr-block.gr-box span.text-gray-500 {
   border: 0;
+  padding: 0px;
+  margin: 0;
+  background: transparent;
 }
 
 .dark .dark\:bg-gray-200,
@@ -384,8 +386,7 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 
 /* txt2img left settings panel */
 #txt2img_settings {
-  border: 1px solid var(--theme_color_border_low_visibility);
-  box-shadow: 0px 2px 4px var(--theme_color_panel_shadow);
+  /*border: 1px solid var(--theme_color_border_low_visibility);*/
   padding: 20px 10px;
   min-width: var(--left-column-width);
   max-width: var(--left-column-width);
@@ -409,6 +410,11 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 .dark .overflow-hidden .flex .flex-col .relative col .gap-4 {
   min-width: var(--left-column-width);
   max-width: var(--left-column-width);
+}
+
+/* Extension: Dynamic Prompts */
+#dynamic-prompting {
+  margin-bottom: 20px; /* Fix plugin from overflowing to script dropdown's label */
 }
 
 /* Buttons ----------------------------------------------------------------- */
@@ -535,12 +541,14 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 }
 
 /* Number input field, the ones accompanying sliders with the up/down arrow buttons */
-.dark .gr-box > div > div > input.gr-text-input{
+.dark .gr-box > div > div > input.gr-text-input {
   position: absolute;
-  right: 0.5em;
-  top: -0.6em;
+  right: 1.1em;
+  top: -0.9em;
   z-index: 200;
-  width: 8em;
+  width: 4em;
+  padding: 0;
+  text-align: right;
   border-color: var(--input_number_border_color);
 }
 
@@ -568,7 +576,6 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   outline: none;
   opacity: 1.0;
   background: transparent;
-
   margin: auto;
   position: relative;
   overflow: hidden;
@@ -581,38 +588,32 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   outline: none;
 }
 
-/* Slider track */
+/* Slider track (narrow track where the "knob" slides along */
 .gradio-container input[type=range]::-webkit-slider-runnable-track {
   height: 4px;
-  border-radius: 3px;
-  /*background:  #222;
-  opacity: 1.0;*/
+  border-radius: 0;
+  background: var(--theme_color_input_background);
 }
 .gradio-container input[type=range]:hover::-webkit-slider-runnable-track {
-  background: var(--slider_track_background_hover_color);
-  opacity: 1.0;
+  background: var(--slider_lower_fill_color);
 }
 
 /* THUMB SLIDER */
 .gradio-container input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  box-shadow: -900px 0 0 900px var(--slider_lower_fill_color);
-  /*box-shadow: 0 0 3px cyan;*/
-
-  border: 4px solid white;
+  box-shadow: -2000px 0 0 2000px var(--slider_lower_fill_color); /* Hacky way to color-fill the bar */
+  border: none;
   background: white;
-  /*border: 2px solid var(--slider_track_background_hover_color);*/
-  height: 10px;
+  height: 20px;
   width: 10px;
-  border-radius: 0px;
-  /*background:   orange;*/
-  /*background:   var(--slider_track_background_hover_color);*/
-  margin-top: -5px;
+  border-radius: 0;
+  margin-top: -10px;
 }
 
 .gradio-container input[type=range]:active::-webkit-slider-thumb {
   background: var(--slider_grabbed_knob_background_color);
+  box-shadow: -2000px 0 0 2000px white; /* Hacky way to color-fill the bar */
 }
 
 /* Hide extra horizontal ruler between the footer and the save/send buttons */
@@ -634,7 +635,7 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 #html_log_txt2img,
 #html_log_img2img {
   color: var(--theme_color_text_low_importance);
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Display-size tweaks ----------------------------------------------------- */
