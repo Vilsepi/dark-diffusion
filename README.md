@@ -18,6 +18,8 @@ Launch your WebUI with argument `--theme=dark`. For example, on Windows your `we
 - Button and tabs in general
 - When server loads something, dark blue curtains appear momentarily (e.g. over checkpoint selection, over prompts) to disable user input.
 - When tokens are being counted, an unstyled word "Loading" appears in the upper-right of a text prompt window.
+- Need to unify settings margins. `#txt2img_cfg_scale` is not inside a `#txt2img_settings > div.row` like most of the other settings. Also Seed label is not like any other label.
+- Haven't figured out why custom fonts don't seem to load from web. Local fonts would need to be delivered to assets directory, but it does not seems to load font-faces from an external either.
 
 ## Acknowledgements
 
