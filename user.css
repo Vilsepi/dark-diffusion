@@ -181,6 +181,20 @@ div.tabs > div.border-b-2 > button.bg-white {
   max-width: 1100px;
 }
 
+/* Put positive and negative prompts right next to each other */
+#txt2img_prompt,
+#img2img_prompt {
+  padding-bottom: 0;
+  z-index: 1;
+  margin-bottom: -1px;
+}
+
+#txt2img_neg_prompt,
+#img2img_neg_prompt {
+  padding-top: 0;
+}
+
+
 .dark .gr-input {
   font-family: var(--font_family);
   color: var(--input_text_color);
