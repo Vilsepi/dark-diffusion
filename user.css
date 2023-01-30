@@ -194,6 +194,7 @@ div.tabs > div.border-b-2 > button.bg-white {
 #txt2img_neg_prompt,
 #img2img_neg_prompt {
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 
@@ -216,7 +217,33 @@ div.tabs > div.border-b-2 > button.bg-white {
   background-color: var(--background_color);
 }
 
-/* Background colors */
+/* Token counters in prompt text fields ------------------------------------ */
+
+.token-counter {
+  right: 1em;
+  bottom: 0; /* Move tokens from top-right to bottom-right */
+}
+
+#txt2img_token_counter > span,
+#img2img_token_counter > span,
+#txt2img_negative_token_counter > span,
+#img2img_negative_token_counter > span {
+  border: none; /*1px solid var(--theme_color_border_low_visibility);*/
+  font-size: 85%;
+  color: var(--theme_color_text_low_importance);
+  background: transparent; /*var(--input_focus_background_color);*/
+}
+
+/* "Loading..." text over the token counter if you update the prompt quickly
+and hit generate. This info seems totally pointless*/
+#txt2img_token_counter > div.inset-x-0,
+#img2img_token_counter > div.inset-x-0,
+#txt2img_negative_token_counter > div.inset-x-0,
+#img2img_negative_token_counter > div.inset-x-0 {
+  display: none;
+}
+
+/* Background colors ------------------------------------------------------- */
 .dark,
 .dark .gr-button,
 .dark .bg-white,
