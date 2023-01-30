@@ -112,6 +112,7 @@ input[type=color] {
 /* Main UI tab, most of the UI is inside a tab */
 .tabitem {
   border: 0;
+  padding: 20px 0;
 }
 
 /* Tab buttons */
@@ -184,6 +185,7 @@ div.tabs > div.border-b-2 > button.bg-white {
 /* Put positive and negative prompts right next to each other */
 #txt2img_prompt,
 #img2img_prompt {
+  padding-top: 0; /* Remove top padding to align positive prompt with generate button*/
   padding-bottom: 0;
   z-index: 1;
   margin-bottom: -1px;
@@ -488,7 +490,8 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   max-width: 900px;
   max-height: 80px;
   flex-direction: row; /* Flip main button, little buttons and style dropdown from rows to columns */
-  align-items: center;
+  align-items: start;
+  margin-top: 0;
   gap: 20px;
 }
 
