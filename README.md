@@ -14,12 +14,10 @@ Launch your WebUI with argument `--theme=dark`. For example, on Windows your `we
 
 ## Known issues / work-in-progress
 
+- txt2img_results area is bumped down temporarily by the progress bar. This seems to be caused by a webui change, as it did not happen earlier.
 - When server loads something, dark blue curtains appear momentarily (e.g. over checkpoint selection, over prompts) to disable user input. This seems even worse now as many of the curtains act as a light grey loading bar when loading and old query and it changes model/VAE.
-- Token counters in general
-- When tokens are being counted, an unstyled word "Loading" appears in the upper-right of a text prompt window.
 - Need to unify settings margins. `#txt2img_cfg_scale` is not inside a `#txt2img_settings > div.row` like most of the other settings. Also Seed label is not like any other label.
 - Haven't figured out why custom fonts don't seem to load from web. Local fonts would need to be delivered to assets directory, but it does not seems to load font-faces from an external either.
-- txt2img_results area is bumped down temporarily by the progress bar. This seems to be caused by a webui change, as it did not happen earlier.
 
 ## Acknowledgements
 
