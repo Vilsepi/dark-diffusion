@@ -5,7 +5,7 @@
 
   --theme_color_green: #73C991; /* e.g. OK */
   --theme_color_red: #DB6A5E; /* e.g. error/warning */
-  --theme_color_blue: #3B8EEA; /* e.g. notice, accent */
+  --theme_color_blue: #1475E2; /* e.g. notice, accent */
 
   /* Inputs */
   --theme_color_text_highlight: #EEEEEE;
@@ -481,11 +481,19 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   z-index: 11;
 }*/
 
-/* Call-to-action button */
+/* Call-to-action button --------------------------------------------------- */
 
 #txt2img_actions_column,
 #img2img_actions_column {
-  max-width: 300px;
+  max-width: 900px;
+  max-height: 80px;
+  flex-direction: row; /* Flip main button, little buttons and style dropdown from rows to columns */
+  align-items: center;
+  gap: 20px;
+}
+
+#txt2img_tools {
+  justify-content: center; /* Center little buttons between its neighboring columns */
 }
 
 .dark .gr-button-primary,
@@ -525,7 +533,15 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   box-shadow: 0 0 0 1.0em transparent;
 }
 
-/* Generic buttons (Open, Save, Send to img2img, Random seed, Previous seed, Save style etc.)*/
+/* Context/Right-click menu, appears at least when right-clicking Generate button */
+#context-menu {
+  font-family: var(--font_family);
+  border-color: var(--theme_color_border_main);
+  box-shadow: none;
+}
+
+/* Secondary buttons ------------------------------------------------------- */
+/* (Open, Save, Send to img2img, Random seed, Previous seed, Save style etc.)*/
 .dark .gr-button-secondary,
 .dark .gr-button-tool {
   font-family: var(--font_family);
@@ -552,24 +568,6 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   -moz-animation: anim_pulse_blue 0.2s;
   -o-animation: anim_pulse_blue 0.2s;
   box-shadow: 0 0 0 1.0em transparent;
-}
-
-
-/* Context/Right-click menu, appears at least when right-clicking Generate button */
-#context-menu {
-  font-family: var(--font_family);
-  border-color: var(--theme_color_border_main);
-  box-shadow: none;
-}
-
-/* TODO This seemed to do nothing
-.dark .context-menu-items a:hover {
-  background: CYAN !important;
-  color: CYAN !important;
-  box-shadow: none;
-}*/
-.dark .context-menu-items {
-  transition: all 0.3s ease-in-out;
 }
 
 /* Number input field, the ones accompanying sliders with the up/down arrow buttons */
