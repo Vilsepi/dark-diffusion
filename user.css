@@ -115,10 +115,8 @@ input[type=color] {
 }
 
 /* Tab buttons */
-#tabs > div:first-of-type button {
+div.tabs > div:first-of-type button {
   font-family: var(--font_family);
-  font-size: 90%;
-  /*transition: all 0.3s ease-in-out;*/
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
