@@ -117,14 +117,30 @@ input[type=color] {
 /* Tab buttons */
 div.tabs > div:first-of-type button {
   font-family: var(--font_family);
+  text-transform: capitalize;
+  border-bottom: 2px solid var(--background_color);
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
 
-#tabs > div:first-of-type button:hover {
-  border-color: 0 0 0 0.2em var(--input_focus_color);
+div.tabs > div:first-of-type button:hover {
+  text-shadow: 0px 0px 1px var(--theme_color_text_highlight);
+  border-bottom: 2px solid var(--theme_color_text_highlight);
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
+}
+
+/* Remove horizontal ruler below tab buttons */
+div.tabs > div.border-b-2 {
+  border: 0;
+}
+
+/* Active tab button */
+div.tabs > div.border-b-2 > button.bg-white {
+  text-shadow: 0px 0px 1px var(--theme_color_text_highlight);
+  border: 2px solid var(--input_focus_background_color) !important;
+  border-bottom: 2px solid var(--theme_color_text_highlight) !important;
+  background-color: var(--input_focus_background_color);
 }
 
 .dark .border,
