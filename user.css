@@ -402,6 +402,7 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
 
 /* Progress bar ------------------------------------------------------------ */
 .dark .progressDiv {
+  position: absolute;
   width: 100%;
   height: 22px;
   background: transparent;
@@ -409,9 +410,6 @@ input[type=checkbox]:checked + span, input[type=radio]:checked + span {
   border-width: 0.5px;*/
   border-radius: var(--border_radius) !important;
   cursor: progress;
-}
-
-.progressDiv {
   top: -21px;
 }
 
